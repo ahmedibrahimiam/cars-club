@@ -15,4 +15,6 @@ connectDB();
 
 app.use("/api/auth", authRoutes);
 
-app.listen(process.env.PORT || 5000);
+//app.listen(process.env.PORT || 5000);
+
+module.exports = app;
