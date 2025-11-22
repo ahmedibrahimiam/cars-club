@@ -3,9 +3,6 @@ const router = express.Router();
 const Part = require("../models/Part");
 const protect = require("../middleware/authMiddleware");
 
-// @route   GET /api/parts
-// @desc    Get all parts (Public route for Flutter)
-// @access  Public
 router.get("/", async (req, res) => {
     try {
         const parts = await Part.find();
@@ -20,17 +17,12 @@ router.get("/", async (req, res) => {
     }
 });
 
-// @route   POST /api/parts/add
-// @desc    Add a new part (Protected route for Admin)
-// @access  Private
 router.post("/add", protect, async (req, res) => {
     try {
-        const userId = req.user.id;
+        // هذا السطر يضيف الـ user_id من الـ token إلى بيانات القطعة قبل الحفظ
+        req.body.user = req.user.id; 
         
-        const part = await Part.create({
-            ...req.body,
-            user: userId
-        });
+        const part = await Part.create(req.body);
 
         res.status(201).json({
             success: true,
