@@ -3,9 +3,10 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 
+// تأكد من أن أسماء الملفات في routes كلها تبدأ بحرف صغير
 const authRoutes = require("./routes/auth");
 const carsRoutes = require("./routes/cars");
-const partsRoutes = require("./routes/parts"); // ⬅️ تأكد من وجوده
+const partsRoutes = require("./routes/parts"); 
 
 dotenv.config();
 
@@ -16,14 +17,13 @@ app.use(express.json());
 
 connectDB();
 
+// تعريف المسارات
 app.use("/api/auth", authRoutes);
 app.use("/api/cars", carsRoutes);
-app.use("/api/parts", partsRoutes); // ⬅️ تأكد من وجوده
+app.use("/api/parts", partsRoutes); // ربط مسار Parts
 
-const PORT = process.env.PORT || 5000;
-
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+app.listen(process.env.PORT || 5000, () => {
+    console.log(`Server running on port ${process.env.PORT || 5000}`);
 });
 
 module.exports = app;
