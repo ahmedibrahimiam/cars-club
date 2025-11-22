@@ -19,8 +19,8 @@ router.get("/", async (req, res) => {
 
 router.post("/add", protect, async (req, res) => {
     try {
-        // هذا السطر يضيف الـ user_id من الـ token إلى بيانات القطعة قبل الحفظ
-        req.body.user = req.user.id; 
+        
+        // **لن نستخدم req.user.id مؤقتاً**
         
         const part = await Part.create(req.body);
 
