@@ -5,20 +5,20 @@ const connectDB = require("./config/db");
 
 const authRoutes = require("./routes/auth");
 const carsRoutes = require("./routes/cars");
+const partsRoutes = require("./routes/parts");
 
 dotenv.config();
 
 const app = express();
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 
 connectDB();
 
-// Define Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/cars", carsRoutes);
+app.use("/api/parts", partsRoutes);
 
 app.listen(process.env.PORT || 5000, () => {
     console.log(`Server running on port ${process.env.PORT || 5000}`);
