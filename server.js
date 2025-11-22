@@ -5,7 +5,7 @@ const connectDB = require("./config/db");
 
 const authRoutes = require("./routes/auth");
 const carsRoutes = require("./routes/cars");
-const partsRoutes = require("./routes/parts"); // ⬅️ هذا السطر لربط ملف routes/parts.js
+const partsRoutes = require("./routes/parts"); // ⬅️ تأكد من وجوده
 
 dotenv.config();
 
@@ -18,7 +18,7 @@ connectDB();
 
 app.use("/api/auth", authRoutes);
 app.use("/api/cars", carsRoutes);
-app.use("/api/parts", partsRoutes); // ⬅️ هذا السطر لربط المسار /api/parts
+app.use("/api/parts", partsRoutes); // ⬅️ تأكد من وجوده
 
 app.listen(process.env.PORT || 5000, () => {
     console.log(`Server running on port ${process.env.PORT || 5000}`);
